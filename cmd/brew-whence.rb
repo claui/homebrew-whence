@@ -1,7 +1,7 @@
 # encoding: UTF-8
 # frozen_string_literal: true
 
-#:  * `whither` [`--no-headers`] <filename>
+#:  * `whence` [`--no-headers`] <filename>
 #:
 #:  Look up the formula to which an executable belongs.
 #:
@@ -10,7 +10,7 @@
 #:
 #:  Example #1:
 #:
-#:      $ brew whither 7z mvn zdb
+#:      $ brew whence 7z mvn zdb
 #:
 #:      Executable                         Comes from
 #:      ==========                         ==========
@@ -20,7 +20,7 @@
 #:
 #:  Example #2:
 #:
-#:      $ brew whither -H 7z mvn zdb
+#:      $ brew whence -H 7z mvn zdb
 #:
 #:      7z    A  p7zip  16.02                  /usr/local/bin/7z
 #:      mvn   A  maven  3.6.3                  /usr/local/bin/mvn
@@ -29,19 +29,19 @@
 require "cli/parser"
 require "pathname"
 
-require_relative "./whither/exceptions"
-require_relative "./whither/format"
-require_relative "./whither/source_locator"
+require_relative "./whence/exceptions"
+require_relative "./whence/format"
+require_relative "./whence/source_locator"
 
 module Homebrew
   module_function
 
   LINK_DIRECTORIES= %w[bin sbin]
 
-  def whither_args
+  def whence_args
     Homebrew::CLI::Parser.new do
       usage_banner <<~EOS
-        `whither` [<options>] <filename>
+        `whence` [<options>] <filename>
 
         Look up the formula to which an executable belongs.
       EOS
@@ -50,8 +50,8 @@ module Homebrew
     end
   end
 
-  def whither
-    whither_args.parse
+  def whence
+    whence_args.parse
 
     names = args.named
     odebug "Given executable names", *names
@@ -100,6 +100,6 @@ module Homebrew
     puts table.to_s
   end
 
-  whither
+  whence
   odebug "Success"
 end

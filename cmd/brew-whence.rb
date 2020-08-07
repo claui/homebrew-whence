@@ -51,7 +51,7 @@ module Homebrew
   end
 
   def whence
-    whence_args.parse
+    args = whence_args.parse
 
     names = args.named
     odebug "Given executable names", *names

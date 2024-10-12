@@ -1,3 +1,7 @@
+**Note: This external Homebrew command is no longer maintained. Feel free to create a fork or switch to one that is actively supported.**
+
+___
+
 # brew whence
 
 ## About brew whence
